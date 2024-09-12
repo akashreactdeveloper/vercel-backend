@@ -33,7 +33,8 @@ async function userSignInController(req,res){
 
         const tokenOption = {
             httpOnly : true,
-            secure : process.env.NODE_ENV === 'production',
+            secure : true,
+            // secure : process.env.NODE_ENV === 'production',
             sameSite: 'None',
         }
 
