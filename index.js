@@ -22,6 +22,40 @@ app.use(cors({
     credentials: true
 }));
 
+router.post('/signin', async (req, res) => {
+    try {
+        const { email, password } = req.body;
+
+        if (!email || !password) throw new Error("Email and password are required");
+
+        const user = await userModel.findOne({ email });
+        if (!user) throw new Error("User not found");
+
+        const isPasswordValid = await bcrypt.compare(password, user.password);
+        if (!isPasswordValid) throw new Error("Invalid password");
+
+        const token = generateToken(user); // Use the generateToken function
+
+        res.cookie('token', token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'None', // Ensure cookies are secure in production
+        }).status(200).json({
+            message: "Login successful",
+            data: token,
+            success: true,
+            error: false
+        });
+
+    } catch (err) {
+        res.status(400).json({
+            message: err.message || err,
+            error: true,
+            success: false
+        });
+    }
+});
+
 
 app.use(express.json())
 app.use(cookieParser())
