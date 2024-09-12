@@ -5,7 +5,7 @@ const connectDB = require('./config/db')
 const router = require('./routes')
 const cookieParser = require('cookie-parser')
 const AwlModel = require('./models/AwlModel');
-const updateAwlFormDataController = require('../backend/controller/awlForm/updateAwlFormData')
+const updateAwlFormDataController = require('./controller/awlForm/updateAwlFormData')
 
 const app = express()
 const allowedOrigins = ['https://66bc56186652184c2bb2efba--teal-yeot-b589c2.netlify.app','https://teal-yeot-b589c2.netlify.app','http://localhost:3001','http://localhost:3000','http://localhost:3002'];
