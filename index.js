@@ -6,6 +6,7 @@ const router = require('./routes')
 const cookieParser = require('cookie-parser')
 const AwlModel = require('./models/AwlModel');
 const updateAwlFormDataController = require('./controller/awlForm/updateAwlFormData')
+const generateToken = require('./utils/TokenUtils')
 
 const app = express()
 const allowedOrigins = ['https://66bc56186652184c2bb2efba--teal-yeot-b589c2.netlify.app','https://teal-yeot-b589c2.netlify.app','http://localhost:3001','http://localhost:3000','http://localhost:3002','https://vercel-frontend-l3j4.vercel.app'];
@@ -65,6 +66,11 @@ router.post('/update-gatepass', updateAwlFormDataController);
 app.use("/api", router)
 
 const PORT = process.env.PORT || 8080
+
+app.use((req, res, next) => {
+    console.log('Cookies: ',  JSON.stringify(req.cookies));
+    next();
+});
 
 
 connectDB().then(() => {
