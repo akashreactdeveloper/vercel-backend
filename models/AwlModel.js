@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Counter = require('./counterModel'); // Adjust the path as needed
 
 const AwlSchema = new mongoose.Schema({
-    gatepassNumber: { type: String, unique: true},
+    gatepassNumber: { type: String, unique: true },
     type: String,
     partyName: String,
     batchnumber: String,
@@ -84,17 +84,23 @@ const AwlSchema = new mongoose.Schema({
     TotalTruckWeight1: Number,
     TotalTruckWeight2: Number,
     TotalTruckWeight3: Number,
-    typeofsale : String,
-    loadingDoneBy : String,
-    kandaWeight : String,
-    verified : String,
+    typeofsale: String,
+    loadingDoneBy: String,
+    kandaWeight: String,
+    bnverified: String,
+    kwverified: String,
     remarks: String,
-    weightDifference : Number,
-    status : String,
-    reason : String,
-    weightOfScrap : Number,
-    perkgrateScrap : Number,
-    difference : Number,
+    weightDifference: Number,
+    status: String,
+    reason: String,
+    weightOfScrap: Number,
+    perkgrateScrap: Number,
+    difference: Number,
+    billNumber: Number,
+    billNumberVerifiedBy: String,
+    kandaWeightVerifiedBy: String,
+    gatepassGeneratedBy: String,
+    canceledBy: String,
 }, {
     timestamps: true
 });
@@ -107,9 +113,9 @@ AwlSchema.pre('save', async function (next) {
             { $inc: { sequence_value: 1 } },
             { new: true, upsert: true }
         );
-        console.log("new",this.type)
+        console.log("new", this.type)
         const prefix = this.type === 'AWL' ? 'A-' : 'C-';
-        console.log("gatepass number backend",`${prefix}${counter.sequence_value}`)
+        console.log("gatepass number backend", `${prefix}${counter.sequence_value}`)
         this.gatepassNumber = `${prefix}${counter.sequence_value}`;
     }
     next();
