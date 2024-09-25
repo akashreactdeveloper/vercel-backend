@@ -9,7 +9,7 @@ const updateAwlFormDataController = require('./controller/awlForm/updateAwlFormD
 const generateToken = require('./utils/TokenUtils')
 
 const app = express()
-const allowedOrigins = ['https://66bc56186652184c2bb2efba--teal-yeot-b589c2.netlify.app','https://teal-yeot-b589c2.netlify.app','https://vercel-frontend-l3j4.vercel.app','https://vercel-frontend-two.vercel.app','https://gatepass-seven.vercel.app','https://crfm-gatepass.vercel.app'];
+const allowedOrigins = ['https://66bc56186652184c2bb2efba--teal-yeot-b589c2.netlify.app','https://teal-yeot-b589c2.netlify.app','https://vercel-frontend-l3j4.vercel.app','https://vercel-frontend-two.vercel.app','https://gatepass-seven.vercel.app','https://crfm-gatepass.vercel.app','http://localhost:3000'];
 app.use(cors({
     origin: function (origin, callback) {
         // Allow requests with no origin (like mobile apps or curl requests)
