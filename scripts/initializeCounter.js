@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Counter = require('./counterModel'); // Adjust the path as needed
 
 // Replace with your actual MongoDB connection string
-const mongoURI = 'mongodb+srv://varceldeploy:vareldeploy1@varceldeploy.o7q0q.mongodb.net/varceldeploy?retryWrites=true&w=majority';
+const mongoURI = 'mongodb+srv://crfmsocial:%40Crfm564@crfm.esvjqsd.mongodb.net/CRFM?retryWrites=true&w=majority';
 
 mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
